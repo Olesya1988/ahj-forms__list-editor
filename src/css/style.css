@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
+#root {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #dbdfde;
+  padding: 20px;
+}
+
+.container {
+  width: 40%;
+  min-width: 500px;
+  height: 550px;  
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border-radius: 5px;
+  background-image: url('../pic/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top: 40px solid #d0d1d1;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  flex: 0 0 90%;
+  border-top-left-radius: 7px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.container__header {
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  padding: 30px;
+  font-size: 20px;  
+}
+
+.container__button {
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.card-container {
+  width: 100%;
+  border: 1px solid gray;
+  padding: 10px;
+}
+
+.card, .card-container__title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+.card-container__title {
+  margin-bottom: 10px;
+}
+
+.card__name, .card-container__title-name {
+  width: 50%;
+}
+
+.card-container__title-actions {
+  text-align: center;
+}
+
+.card__price, .card-container__title-price {
+  width: 30%;
+}
+
+.card__actions, .card-container__title-actions {
+  width: 20%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5px;
+}
+
+.card__edit, .card__delete {
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.card__edit {
+  background-image: url('../pic/pencil.png');  
+}
+
+.card__delete {
+  background-image: url('../pic/close.png');
+}
+
+.modal__background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__content {
+  position: absolute;
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: white;
+  width: 300px;
+  border-radius: 5px;
+  box-shadow: 0 3px 5px 2px rgba(0, 0, 0, .3);
+}
+
+.modal__form {
+  width: 100%;
+}
+
+.name-form__input, .price-form__input {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid gray;
+  padding: 5px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.submit, .cancel {
+  border-radius: 8px;
+  background-color: white;
+  width: 100px;
+  border: 1px solid gray;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
