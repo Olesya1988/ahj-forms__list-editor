@@ -1,4 +1,4 @@
-import Draw from './Draw';
+import createEl from './createEl';
 
 export default class Modal {
   constructor(parent) {
@@ -7,20 +7,20 @@ export default class Modal {
   }
 
   draw() {
-    this.modalBackground = Draw.getItem('div', 'modal__background', this.parent);
+    this.modalBackground = createEl('div', 'modal__background', this.parent);
     this.modalBackground.classList.add('hidden');
-    const modalContent = Draw.getItem('div', 'modal__content', this.modalBackground);
-    const nameForm = Draw.getItem('form', 'modal__form', modalContent);
+    const modalContent = createEl('div', 'modal__content', this.modalBackground);
+    const nameForm = createEl('form', 'modal__form', modalContent);
     nameForm.classList.add('name-form');
-    Draw.getItem('div', 'name-form__text', nameForm, 'Название');
-    Draw.getItem('input', 'name-form__input', nameForm);
-    const priceForm = Draw.getItem('div', 'modal__form', modalContent);
+    createEl('div', 'name-form__text', nameForm, 'Название');
+    createEl('input', 'name-form__input', nameForm);
+    const priceForm = createEl('div', 'modal__form', modalContent);
     priceForm.classList.add('price-form');
-    Draw.getItem('div', 'price-form__text', priceForm, 'Стоимость');
-    Draw.getItem('input', 'price-form__input', priceForm);
-    const buttons = Draw.getItem('div', 'buttons', modalContent);
-    Draw.getItem('button', 'submit', buttons, 'Сохранить');
-    Draw.getItem('button', 'cancel', buttons, 'Отмена');
+    createEl('div', 'price-form__text', priceForm, 'Стоимость');
+    createEl('input', 'price-form__input', priceForm);
+    const buttons = createEl('div', 'buttons', modalContent);
+    createEl('button', 'submit', buttons, 'Сохранить');
+    createEl('button', 'cancel', buttons, 'Отмена');
   }
 
   show() {

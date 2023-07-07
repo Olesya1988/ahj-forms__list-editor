@@ -53,6 +53,7 @@ html, body, #root {
   width: 100%;
   border: 1px solid gray;
   padding: 10px;
+  background-color: white;
 }
 
 .card, .card-container__title {

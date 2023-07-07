@@ -1,4 +1,4 @@
-import Draw from './Draw';
+import createEl from './createEl';
 import Modal from './Modal';
 import Card from './Card';
 
@@ -10,11 +10,13 @@ export default class Editor {
   }
 
   init() {
+    // localStorage.clear();
     this.drawUI();
     this.modal.draw();
     this.bindToDOM();
-    this.card = new Card(document.querySelector('.card-container'));
-    this.getSave();
+    this.cards = document.querySelector('.cards');
+    this.card = new Card(this.cards);
+    this.loadFromStorage();
   }
 
   bindToDOM() {
@@ -22,15 +24,16 @@ export default class Editor {
   }
 
   drawUI() {
-    const container = Draw.getItem('div', 'container', this.parent);
-    const containerHeader = Draw.getItem('div', 'container__header', container);
-    Draw.getItem('div', 'container__title', containerHeader, 'Товары');
-    Draw.getItem('div', 'container__button', containerHeader, '+');
-    const cardContainer = Draw.getItem('div', 'card-container', container);
-    const cardContainerTitle = Draw.getItem('div', 'card-container__title', cardContainer);
-    Draw.getItem('div', 'card-container__title-name', cardContainerTitle, 'Название');
-    Draw.getItem('div', 'card-container__title-price', cardContainerTitle, 'Стоимость');
-    Draw.getItem('div', 'card-container__title-actions', cardContainerTitle, 'Действия');
+    const container = createEl('div', 'container', this.parent);
+    const containerHeader = createEl('div', 'container__header', container);
+    createEl('div', 'container__title', containerHeader, 'Товары');
+    createEl('div', 'container__button', containerHeader, '+');
+    const cardContainer = createEl('div', 'card-container', container);
+    const cardContainerTitle = createEl('div', 'card-container__title', cardContainer);
+    createEl('div', 'card-container__title-name', cardContainerTitle, 'Название');
+    createEl('div', 'card-container__title-price', cardContainerTitle, 'Стоимость');
+    createEl('div', 'card-container__title-actions', cardContainerTitle, 'Действия');
+    createEl('div', 'cards', cardContainer);
   }
 
   click(e) {
@@ -73,13 +76,32 @@ export default class Editor {
   }
 
   save() {
-    	localStorage.setItem('cards', document.querySelector('.card-container').innerHTML);
+    const arrOfNames = Array.from(document.querySelectorAll('.card__name'));
+    const newArrOfNames = [];
+    arrOfNames.forEach((el) => {
+      newArrOfNames.push(el.textContent);
+    });
+
+    const arrOfPrices = Array.from(document.querySelectorAll('.card__price'));
+    const newArrOfPrices = [];
+    arrOfPrices.forEach((el) => {
+      newArrOfPrices.push(el.textContent);
+    });
+
+    	localStorage.setItem('cardName', newArrOfNames);
+    localStorage.setItem('cardPrice', newArrOfPrices);
   	}
 
-  getSave() {
-    const fromStorage = localStorage.getItem('cards');
-    if (fromStorage) {
-      document.querySelector('.card-container').innerHTML = fromStorage;
+  loadFromStorage() {
+    const savedNames = localStorage.getItem('cardName');
+    const savedPrices = localStorage.getItem('cardPrice');
+
+    if (savedNames) {
+      const arrOfSavedNames = savedNames.split(',');
+      const arrOfSavedPrices = savedPrices.split(',');
+      for (let i = 0; i < arrOfSavedNames.length; i++) {
+        this.card.create(arrOfSavedNames[i], arrOfSavedPrices[i]);
+      }
     }
   }
 }

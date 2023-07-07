@@ -1,4 +1,4 @@
-import Draw from './Draw';
+import createEl from './createEl';
 
 export default class Card {
   constructor(element) {
@@ -6,12 +6,12 @@ export default class Card {
   }
 
   create(name, price) {
-    const card = Draw.getItem('div', 'card', this.element);
-    Draw.getItem('div', 'card__name', card, name);
-    Draw.getItem('div', 'card__price', card, price);
-    const cardActions = Draw.getItem('div', 'card__actions', card);
-    Draw.getItem('div', 'card__edit', cardActions);
-    Draw.getItem('div', 'card__delete', cardActions);
+    const card = createEl('div', 'card', this.element);
+    createEl('div', 'card__name', card, name);
+    createEl('div', 'card__price', card, price);
+    const cardActions = createEl('div', 'card__actions', card);
+    createEl('div', 'card__edit', cardActions);
+    createEl('div', 'card__delete', cardActions);
 
     return new Card(card);
   }
